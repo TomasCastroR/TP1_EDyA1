@@ -2,8 +2,6 @@
 #define __GENERAR_H__
 
 #include <stdio.h>
-#define LARGO_BUFFER 100
-#define RANGO_EDAD 100
 
 int cantidad_de_lineas (FILE *archivo);
 
