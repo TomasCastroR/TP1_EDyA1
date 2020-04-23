@@ -15,5 +15,10 @@ int main (int argc, char *argumentos[]) {
   int *arrayRandom = malloc (sizeof(int) * cantidad);
   arreglo_num_random (arrayRandom, cantidad, lineas);
   lectura_escritura (cantidad, arrayRandom, argumentos[1], argumentos[2], argumentos[4]);
+  GList lista = extraer_personas(argumentos[4],argumentos[3]);
+  for(GNodo *temporal = lista->primero; temporal != NULL; temporal = temporal->sig ){
+    printf("%s" , (temporal)->(*Persona)dato->nombre);
+
+  }
   return 0;
 }

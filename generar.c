@@ -39,7 +39,7 @@ void crear_arreglo_localidades (FILE *archivo, int largo, char **localidades) {
     fscanf (archivo, "%[^\n]\n", buffer);
     localidades[i] = malloc (sizeof(char) * (strlen(buffer) + 1));
     strcpy (localidades[i], buffer);
-    localidades[i][strlen(buffer) + 1] = '\0';
+    localidades[i][strlen(buffer)] = '\0';
   }
 }
 /*arreglo_num_random: int*, int, int
