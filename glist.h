@@ -10,6 +10,7 @@ typedef struct {
   GNodo* primero;
   GNodo* ultimo;
 }*GList;
+
 typedef struct {
   char* nombre;
   int edad;
@@ -24,7 +25,9 @@ void glist_destruir(GList lista, Destruir nombresignificativo );
 
 void glist_agregar_final(GList *lista, void *dato);
 
+Persona* crear_persona (char* nombre, int edad, char* localidad);
 
+GList extraer_personas (char* nombrearchivo, int cantidadpersonas);
 
 
 #endif 

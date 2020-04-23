@@ -1,6 +1,7 @@
 #include "glist.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 GList glist_crear(){
   GList lista = malloc(sizeof(GList));
@@ -51,9 +52,9 @@ GList extraer_personas (char* nombrearchivo, int cantidadpersonas){
   Persona* persona;
   archivopersonas = fopen(nombrearchivo,"r");
   for(int i=0; i<cantidadpersonas; ++i){
-    fscanf(archivopersonas,"%s, %d, %s\n", nombre, edad, localidad);
+    fscanf(archivopersonas,"%[^,], %d, %[^\n]\n", nombre, &edad, localidad);
     persona = crear_persona(nombre, edad, localidad);
-    glist_agregar_final(lista,persona);
+    glist_agregar_final(&lista, persona);
   }
   return lista;
 }

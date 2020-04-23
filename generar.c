@@ -111,3 +111,18 @@ void lectura_escritura (int cantPersonas, int *arregloRandom,
   liberar_memoria (arregloLocalidades, cantLocalidades);
   free (arregloRandom);
 }
+
+void crear_archivo (char *archivoNombre, char *archivoPaises, int cantPersonas, char *archivoSalida) {
+  int lineas = 0;
+  FILE *fEntrada;
+  fEntrada = fopen (archivoNombre, "r");
+  lineas = cantidad_de_lineas (fEntrada);
+  fclose (fEntrada);
+  while ((cantPersonas > lineas) || (cantPersonas < 0)) {
+    printf ("Por favor ingrese una cantPersonas menor a %d y mayor a 0: ", lineas);
+    scanf ("%d", &cantPersonas);
+  }
+  int *arrayRandom = malloc (sizeof(int) * cantPersonas);
+  arreglo_num_random (arrayRandom, cantPersonas, lineas);
+  lectura_escritura (cantPersonas, arrayRandom, archivoNombre, archivoPaises, archivoSalida);
+}
