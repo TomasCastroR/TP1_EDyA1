@@ -17,17 +17,17 @@ typedef struct {
   char* localidad;
 }Persona;
 
-typedef void (* Destruir ) ( void * dato );
+typedef void (*Destruir) (void *dato);
 
 GList glist_crear();
 
-void glist_destruir(GList lista, Destruir nombresignificativo );
+void glist_destruir(GList lista, Destruir funcionDestruir);
 
 void glist_agregar_final(GList *lista, void *dato);
 
 Persona* crear_persona (char* nombre, int edad, char* localidad);
 
-GList extraer_personas (char* nombrearchivo, int cantidadpersonas);
+GList crear_lista_personas (char* nombrearchivo, int cantidadpersonas);
 
 
 #endif 

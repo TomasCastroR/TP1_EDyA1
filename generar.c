@@ -112,7 +112,7 @@ void lectura_escritura (int cantPersonas, int *arregloRandom,
   free (arregloRandom);
 }
 
-void crear_archivo (char *archivoNombre, char *archivoPaises, int cantPersonas, char *archivoSalida) {
+void crear_archivo_personas (char *archivoNombre, char *archivoPaises, int cantPersonas, char *archivoSalida) {
   int lineas = 0;
   FILE *fEntrada;
   fEntrada = fopen (archivoNombre, "r");

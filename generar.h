@@ -11,8 +11,8 @@ void crear_array_localidades (FILE *archivo, int largo, char **localidades);
 
 void arreglo_num_random (int *array_random, int cantPersonas, int totalPersonas);
 
-void lectura_escritura(int cantPersonas, int arregloRandom[], char *archivoNombres, char *archivoPaises, char *archivoProg1);
+void lectura_escritura(int cantPersonas, int *arregloRandom, char *archivoNombres, char *archivoPaises, char *archivoProg1);
 
-void crear_archivo (char *archivoNombre, char *archivoPaises, int cantPersonas, char *archivoSalida);
+void crear_archivo_personas (char *archivoNombre, char *archivoPaises, int cantPersonas, char *archivoSalida);
 
 #endif
