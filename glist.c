@@ -48,11 +48,12 @@ GList crear_lista_personas (char* nombrearchivo, int cantidadpersonas) {
   int edad;
   GList lista = glist_crear();
   Persona* persona;
-  FILE* archivopersonas = fopen (nombrearchivo,"r");
+  FILE* archivoPersonas = fopen (nombrearchivo,"r");
   for(int i = 0; i < cantidadpersonas; ++i) {
-    fscanf (archivopersonas,"%[^,], %d, %[^\n]\n", nombre, &edad, localidad);
+    fscanf (archivoPersonas,"%[^,], %d, %[^\n]\n", nombre, &edad, localidad);
     persona = crear_persona (nombre, edad, localidad);
     glist_agregar_final (&lista, persona);
   }
+  fclose (archivoPersonas);
   return lista;
 }

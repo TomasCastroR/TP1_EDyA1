@@ -3,16 +3,21 @@
 
 #include <stdio.h>
 
+typedef struct {
+  char **arreglo;
+  int capacidad;
+}ArregloStrings;
+
 int cantidad_de_lineas (FILE *archivo);
 
-void liberar_memoria (char **localidades, int largo);
+void liberar_memoria (ArregloStrings *arreglo);
 
-void crear_array_localidades (FILE *archivo, int largo, char **localidades);
+ArregloStrings* crear_arreglo (char *nombreArchivo);
 
-void arreglo_num_random (int *array_random, int cantPersonas, int totalPersonas);
+void lectura_escritura (int cantPersonas, ArregloStrings *arregloNombres,
+                             ArregloStrings *arregloPaises, char *nombreSalida);
 
-void lectura_escritura(int cantPersonas, int *arregloRandom, char *archivoNombres, char *archivoPaises, char *archivoProg1);
-
-void crear_archivo_personas (char *archivoNombre, char *archivoPaises, int cantPersonas, char *archivoSalida);
+void crear_archivo_personas (char *archivoNombre, char *archivoPaises,
+                                         int cantPersonas, char *archivoSalida);
 
 #endif
