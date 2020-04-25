@@ -29,7 +29,7 @@ Persona* crear_persona (char* nombre, int edad, char* localidad);
 
 GList crear_lista_personas (char* nombrearchivo, int cantidadpersonas);
 
-void liberar_nodo (GNodo *nodoALiberar);
+void liberar_nodo (void *nodoALiberar);
 
 
 #endif 

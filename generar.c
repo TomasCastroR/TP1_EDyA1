@@ -65,13 +65,13 @@ void escribir_archivo_personas (int cantPersonas, ArregloStrings *arregloNombres
                                          edad, arregloPaises->strings[random2]);
   }
   fclose (archivoSalida);
-  liberar_arreglo (arregloNombres);
-  liberar_arreglo (arregloPaises);
+  liberar_arreglo_strings (arregloNombres);
+  liberar_arreglo_strings (arregloPaises);
 }
 
 void crear_archivo_personas (char *archivoNombres, char *archivoPaises,
                                        int cantPersonas, char *archivoSalida) {
-  ArregloStrings *arregloNombres = crear_arreglo (archivoNombres);
-  ArregloStrings *arregloPaises = crear_arreglo (archivoPaises);
-  lectura_escritura (cantPersonas, arregloNombres, arregloPaises, archivoSalida);
+  ArregloStrings *arregloNombres = crear_arreglo_strings (archivoNombres);
+  ArregloStrings *arregloPaises = crear_arreglo_strings (archivoPaises);
+  escribir_archivo_personas (cantPersonas, arregloNombres, arregloPaises, archivoSalida);
 }
