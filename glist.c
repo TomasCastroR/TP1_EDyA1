@@ -63,3 +63,11 @@ GList crear_lista_personas (char* nombrearchivo, int cantidadpersonas) {
   fclose (archivoPersonas);
   return lista;
 }
+
+void liberar_nodo (GNodo *nodoALiberar) {
+  Persona *personaAux = (Persona*)nodoALiberar->dato;
+  free (personaAux->nombre);
+  free (personaAux->localidad);
+  free (nodoALiberar->dato);
+  free (nodoALiberar);
+}

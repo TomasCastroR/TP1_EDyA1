@@ -51,7 +51,7 @@ ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
   return nuevoArreglo;
 }
 
-void lectura_escritura (int cantPersonas, ArregloStrings *arregloNombres,
+void escribir_archivo_personas (int cantPersonas, ArregloStrings *arregloNombres,
                            ArregloStrings *arregloPaises, char *nombreSalida) {
   FILE *archivoSalida;
   int random1, random2, edad;
