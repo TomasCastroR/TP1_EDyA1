@@ -9,7 +9,7 @@
 
 int cantidad_de_lineas (FILE *archivo) {
   int lineas = 0;
-  char buffer[LARGO_BUFFER], caracter;
+  char buffer[LARGO_BUFFER], caracter = fgetc (archivo);
   while (caracter != EOF) {
     fgets (buffer, LARGO_BUFFER, archivo);
     caracter = fgetc (archivo);
@@ -18,7 +18,6 @@ int cantidad_de_lineas (FILE *archivo) {
   return lineas;
 }
 
-
 void liberar_arreglo_strings (ArregloStrings *arreglo) {
   for (int i = 0; i < arreglo->capacidad; ++i) {
     free (arreglo->strings[i]);
@@ -26,7 +25,6 @@ void liberar_arreglo_strings (ArregloStrings *arreglo) {
   free (arreglo->strings);
   free (arreglo);
 }
-
 
 ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
   char buffer[LARGO_BUFFER];
