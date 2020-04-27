@@ -2,9 +2,9 @@
 #define __GENERAR_H__
 
 #include <stdio.h>
-
+#include <wchar.h>
 typedef struct {
-  char **strings;
+  wchar_t **strings;
   int capacidad;
 }ArregloStrings;
 
@@ -28,14 +28,7 @@ ArregloStrings* crear_arreglo_strings (char *nombreArchivo);
   y el nombre del archivo de salida.
    Escribe sobre un archivo las personas, con una edad aleatoria que va del 1 al
   100 y una localidad aleatoria del archivo de localidades */
-void escribir_archivo_personas (int cantPersonas, ArregloStrings *arregloNombres,
-                             ArregloStrings *arregloPaises, char *nombreSalida);
-
-/* crear_archivo_personas: char*, char*, int, char*
- Recibe el nombre del archivo de personas, el nombre del archivo de paises, la
- cantidad de personas y el nombre del archivo de salida.
- Crea el arreglo de nombres y el arreglo de paises y ejecuta escribir_archivo_personas.*/
-void crear_archivo_personas (char *archivoNombre, char *archivoPaises,
-                                         int cantPersonas, char *archivoSalida);
+void escribir_archivo_personas (int cantPersonas,char *archivoNombre,
+                                       char *archivoPaises, char *nombreSalida);
 
 #endif

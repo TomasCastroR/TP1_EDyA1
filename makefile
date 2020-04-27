@@ -11,3 +11,6 @@ glist.o: glist.c glist.h
 
 generar.o: generar.c generar.h
 	gcc -c -Wall -Werror -Wextra -std=c99 -g generar.c
+
+sorting.o: sorting.c sorting.h
+	gcc -c -Wall -Werror -Wextra -std=c99 -g sorting.c

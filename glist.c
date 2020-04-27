@@ -1,7 +1,7 @@
 #include "glist.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
+#include <wchar.h>
 #include <assert.h>
 
 GList* glist_crear() {
@@ -26,6 +26,7 @@ void glist_agregar_final (GList **lista, void *dato) {
   GNodo *nuevoNodo = malloc (sizeof(GNodo));
   assert(nuevoNodo);
   nuevoNodo->dato = dato;
+  nuevoNodo->ant = (*lista)->ultimo;
   nuevoNodo->sig = NULL;
   if ((*lista)->ultimo != NULL)
     (*lista)->ultimo->sig = nuevoNodo;
@@ -34,29 +35,29 @@ void glist_agregar_final (GList **lista, void *dato) {
   (*lista)->ultimo = nuevoNodo;
 }
 
-Persona* crear_persona (char* nombre, int edad, char* localidad) {
+Persona* crear_persona (wchar_t* nombre, int edad, wchar_t* localidad) {
   Persona* nuevaPersona = malloc (sizeof(Persona));
   assert(nuevaPersona);
-  nuevaPersona->nombre = malloc (sizeof(char) * (strlen (nombre) + 1));
+  nuevaPersona->nombre = malloc (sizeof(wchar_t) * (wcslen (nombre) + 1));
   assert(nuevaPersona->nombre);
-  strcpy (nuevaPersona->nombre, nombre);
-  nuevaPersona->nombre[strlen (nombre)] = '\0';
+  wcscpy (nuevaPersona->nombre, nombre);
+  nuevaPersona->nombre[wcslen (nombre)] = '\0';
   nuevaPersona->edad = edad;
-  nuevaPersona->localidad = malloc (sizeof(char) * (strlen (localidad) + 1));
+  nuevaPersona->localidad = malloc (sizeof(wchar_t) * (wcslen (localidad) + 1));
   assert(nuevaPersona->localidad);
-  strcpy (nuevaPersona->localidad, localidad);
-  nuevaPersona->localidad[strlen (localidad)] = '\0';
+  wcscpy (nuevaPersona->localidad, localidad);
+  nuevaPersona->localidad[wcslen (localidad)] = '\0';
   return nuevaPersona;
 }
 
 GList* crear_lista_personas (char* nombrearchivo, int cantidadpersonas) {
-  char nombre[100], localidad[100];
+  wchar_t nombre[100], localidad[100];
   int edad;
   GList *lista = glist_crear();
   Persona* persona;
   FILE* archivoPersonas = fopen (nombrearchivo,"r");
   for(int i = 0; i < cantidadpersonas; ++i) {
-    fscanf (archivoPersonas,"%[^,], %d, %[^\n]\n", nombre, &edad, localidad);
+    fwscanf (archivoPersonas,"%[^,], %d, %[^\n]\n", nombre, &edad, localidad);
     persona = crear_persona (nombre, edad, localidad);
     glist_agregar_final (&lista, persona);
   }

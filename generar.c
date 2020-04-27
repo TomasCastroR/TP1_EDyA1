@@ -3,16 +3,17 @@
 #include <stdlib.h>
 #include <time.h>
 #include <assert.h>
+#include <wchar.h>
 
 #define LARGO_BUFFER 100
 #define RANGO_EDAD 100
 
 int cantidad_de_lineas (FILE *archivo) {
   int lineas = 0;
-  char buffer[LARGO_BUFFER], caracter = fgetc (archivo);
+  wchar_t buffer[LARGO_BUFFER], caracter = fgetwc (archivo);
   while (caracter != EOF) {
-    fgets (buffer, LARGO_BUFFER, archivo);
-    caracter = fgetc (archivo);
+    fgetws (buffer, LARGO_BUFFER, archivo);
+    caracter = fgetwc (archivo);
     lineas++;
   }
   return lineas;
@@ -27,7 +28,7 @@ void liberar_arreglo_strings (ArregloStrings *arreglo) {
 }
 
 ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
-  char buffer[LARGO_BUFFER];
+  wchar_t buffer[LARGO_BUFFER];
   int capacidad = 0;
   FILE *archivo;
   archivo = fopen (nombreArchivo, "r");
@@ -35,31 +36,33 @@ ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
   rewind (archivo);
   ArregloStrings *nuevoArreglo = malloc (sizeof(ArregloStrings));
   assert(nuevoArreglo);
-  nuevoArreglo->strings = malloc (sizeof(char*) * capacidad);
+  nuevoArreglo->strings = malloc (sizeof(wchar_t*) * capacidad);
   assert(nuevoArreglo->strings);
   nuevoArreglo->capacidad = capacidad;
   for (int i = 0; i < capacidad; ++i) {
-    fscanf (archivo, "%[^\n]\n", buffer);
-    nuevoArreglo->strings[i] = malloc (sizeof(char) * (strlen(buffer) + 1));
+    fwscanf (archivo, "%[^\n]\n", buffer);
+    nuevoArreglo->strings[i] = malloc (sizeof(wchar_t) * (wcslen(buffer) + 1));
     assert(nuevoArreglo->strings[i]);
-    strcpy (nuevoArreglo->strings[i], buffer);
-    nuevoArreglo->strings[i][strlen(buffer)] = '\0';
+    wcscpy (nuevoArreglo->strings[i], buffer);
+    nuevoArreglo->strings[i][wcslen(buffer)] = '\0';
   }
   fclose (archivo);
   return nuevoArreglo;
 }
 
-void escribir_archivo_personas (int cantPersonas, ArregloStrings *arregloNombres,
-                           ArregloStrings *arregloPaises, char *nombreSalida) {
+void crear_archivo_personas (int cantPersonas,char *archivoNombres,
+                                      char *archivoPaises, char *nombreSalida) {
   FILE *archivoSalida;
   int random1, random2, edad;
+  ArregloStrings *arregloNombres = crear_arreglo_strings (archivoNombres);
+  ArregloStrings *arregloPaises = crear_arreglo_strings (archivoPaises);
   archivoSalida = fopen (nombreSalida, "w");
   srand (time(NULL));
   for (int i = 0; i < cantPersonas; i++) {
     random1 = rand() % arregloNombres->capacidad;
     random2 = rand() % arregloPaises->capacidad;
     edad = (rand() % RANGO_EDAD) + 1;
-    fprintf (archivoSalida, "%s, %d, %s\n", arregloNombres->strings[random1],
+    fwprintf (archivoSalida, "%s, %d, %s\n", arregloNombres->strings[random1],
                                          edad, arregloPaises->strings[random2]);
   }
   fclose (archivoSalida);
@@ -67,9 +70,3 @@ void escribir_archivo_personas (int cantPersonas, ArregloStrings *arregloNombres
   liberar_arreglo_strings (arregloPaises);
 }
 
-void crear_archivo_personas (char *archivoNombres, char *archivoPaises,
-                                       int cantPersonas, char *archivoSalida) {
-  ArregloStrings *arregloNombres = crear_arreglo_strings (archivoNombres);
-  ArregloStrings *arregloPaises = crear_arreglo_strings (archivoPaises);
-  escribir_archivo_personas (cantPersonas, arregloNombres, arregloPaises, archivoSalida);
-}

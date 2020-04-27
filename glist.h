@@ -1,9 +1,10 @@
 #ifndef __GLIST_H__
 #define __GLIST_H__
-
+#include <wchar.h>
 typedef struct _GNodo {
   void* dato;
   struct _GNodo *sig;
+  struct _GNodo *ant;
 }GNodo;
 
 typedef struct {
@@ -12,9 +13,9 @@ typedef struct {
 }GList;
 
 typedef struct {
-  char* nombre;
+  wchar_t* nombre;
   int edad;
-  char* localidad;
+  wchar_t* localidad;
 }Persona;
 
 typedef void (*Destruir) (void *dato);
@@ -25,7 +26,7 @@ void glist_destruir(GList *lista, Destruir funcionDestruir);
 
 void glist_agregar_final(GList **lista, void *dato);
 
-Persona* crear_persona (char* nombre, int edad, char* localidad);
+Persona* crear_persona (wchar_t* nombre, int edad, wchar_t* localidad);
 
 GList* crear_lista_personas (char* nombrearchivo, int cantidadpersonas);
 
