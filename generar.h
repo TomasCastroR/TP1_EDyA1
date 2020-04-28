@@ -28,7 +28,7 @@ ArregloStrings* crear_arreglo_strings (char *nombreArchivo);
   y el nombre del archivo de salida.
    Escribe sobre un archivo las personas, con una edad aleatoria que va del 1 al
   100 y una localidad aleatoria del archivo de localidades */
-void escribir_archivo_personas (int cantPersonas,char *archivoNombre,
+void crear_archivo_personas (int cantPersonas,char *archivoNombre,
                                        char *archivoPaises, char *nombreSalida);
 
 #endif

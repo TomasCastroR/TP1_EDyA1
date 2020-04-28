@@ -26,6 +26,8 @@ void glist_destruir(GList *lista, Destruir funcionDestruir);
 
 void glist_agregar_final(GList **lista, void *dato);
 
+void copiar_lista (GList *lista);
+
 Persona* crear_persona (wchar_t* nombre, int edad, wchar_t* localidad);
 
 GList* crear_lista_personas (char* nombrearchivo, int cantidadpersonas);

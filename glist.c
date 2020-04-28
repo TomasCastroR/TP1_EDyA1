@@ -35,6 +35,12 @@ void glist_agregar_final (GList **lista, void *dato) {
   (*lista)->ultimo = nuevoNodo;
 }
 
+void copiar_lista (GList *lista) {
+  GList *listaCopiada = glist_crear();
+  for (GNodo *temp = lista->primero; temp != NULL; temp = temp->sig)
+    glist_agregar_final (&listaCopiada, temp->dato);
+}
+
 Persona* crear_persona (wchar_t* nombre, int edad, wchar_t* localidad) {
   Persona* nuevaPersona = malloc (sizeof(Persona));
   assert(nuevaPersona);
@@ -57,7 +63,7 @@ GList* crear_lista_personas (char* nombrearchivo, int cantidadpersonas) {
   Persona* persona;
   FILE* archivoPersonas = fopen (nombrearchivo,"r");
   for(int i = 0; i < cantidadpersonas; ++i) {
-    fwscanf (archivoPersonas,"%[^,], %d, %[^\n]\n", nombre, &edad, localidad);
+    fwscanf (archivoPersonas,L"%[^,], %d, %[^\n]\n", nombre, &edad, localidad);
     persona = crear_persona (nombre, edad, localidad);
     glist_agregar_final (&lista, persona);
   }

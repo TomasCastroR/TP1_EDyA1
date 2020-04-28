@@ -3,36 +3,35 @@
 
 void glist_insertion_sort (GList *lista, Comparar compare) {
   GNodo *inicio = lista->primero;
-  while (inicio != NULL) {
+  while (inicio->sig != NULL) {
     GNodo *aux = inicio->sig;
-	  while (aux->ant != NULL && compare(aux->ant, aux) > 0) {
+	  while (aux->ant != NULL && compare (aux->dato, aux->ant->dato) > 0) {
+      swap_dato (&aux->dato, &aux->ant->dato);
       aux = aux->ant;
 	  }
-  if (aux->ant)
-	  aux = aux->sig;
-  swap_dato (aux, inicio->sig);
-	inicio = inicio->sig;
+	  inicio = inicio->sig;
   }
 }
 
 void glist_selection_sort (GList *lista, Comparar compare) {
   GNodo *inicio = lista->primero;
-  GNodo *aux = inicio->sig;
   GNodo *menor = inicio;
   while (inicio->sig != NULL) {
+    GNodo *aux = inicio->sig;
     while (aux != NULL) {
-      if (compare (menor->dato, aux->dato) > 0)
+      if (compare (aux->dato, menor->dato) > 0)
         menor = aux;
+      aux = aux->sig;
     }
-	swap_dato (&menor->dato, &inicio->dato);
-	inicio = inicio->sig;
-  menor = inicio;
+	  swap_dato (&menor->dato, &inicio->dato);
+	  inicio = inicio->sig;
+    menor = inicio;
   }
 }
 
-void glist_merge_sort (GList *lista, Comparar compare) {
+/*void glist_merge_sort (GList *lista, Comparar compare) {
 
-}
+}*/
 
 void swap_dato (void **dato1, void **dato2) {
   void *datoAux = *dato1;

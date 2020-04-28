@@ -1,5 +1,4 @@
 #include "generar.h"
-#include <string.h>
 #include <stdlib.h>
 #include <time.h>
 #include <assert.h>
@@ -10,10 +9,11 @@
 
 int cantidad_de_lineas (FILE *archivo) {
   int lineas = 0;
-  wchar_t buffer[LARGO_BUFFER], caracter = fgetwc (archivo);
+  wchar_t buffer[LARGO_BUFFER];
+  char caracter = fgetc (archivo);
   while (caracter != EOF) {
     fgetws (buffer, LARGO_BUFFER, archivo);
-    caracter = fgetwc (archivo);
+    caracter = fgetc (archivo);
     lineas++;
   }
   return lineas;
@@ -40,7 +40,7 @@ ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
   assert(nuevoArreglo->strings);
   nuevoArreglo->capacidad = capacidad;
   for (int i = 0; i < capacidad; ++i) {
-    fwscanf (archivo, "%[^\n]\n", buffer);
+    fwscanf (archivo, L"%[^\n]\n", buffer);
     nuevoArreglo->strings[i] = malloc (sizeof(wchar_t) * (wcslen(buffer) + 1));
     assert(nuevoArreglo->strings[i]);
     wcscpy (nuevoArreglo->strings[i], buffer);
@@ -62,7 +62,7 @@ void crear_archivo_personas (int cantPersonas,char *archivoNombres,
     random1 = rand() % arregloNombres->capacidad;
     random2 = rand() % arregloPaises->capacidad;
     edad = (rand() % RANGO_EDAD) + 1;
-    fwprintf (archivoSalida, "%s, %d, %s\n", arregloNombres->strings[random1],
+    fwprintf (archivoSalida, L"%ls, %d, %ls\n", arregloNombres->strings[random1],
                                          edad, arregloPaises->strings[random2]);
   }
   fclose (archivoSalida);
