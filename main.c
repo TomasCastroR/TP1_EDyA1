@@ -15,7 +15,7 @@ int comparar_edad (void *dato1, void *dato2) {
 
 int main (int argc, char *argumentos[]) {
   assert (argc == 5);
-  setlocale(LC_ALL, "es_ES");
+  setlocale(LC_ALL, "");
 
   int cantidad = atoi (argumentos[3]);
   crear_archivo_personas (cantidad, argumentos[1], argumentos[2], argumentos[4]);

@@ -10,10 +10,10 @@
 int cantidad_de_lineas (FILE *archivo) {
   int lineas = 0;
   wchar_t buffer[LARGO_BUFFER];
-  char caracter = fgetc (archivo);
-  while (caracter != EOF) {
+  wchar_t caracter = fgetwc (archivo);
+  while (caracter != WEOF) {
     fgetws (buffer, LARGO_BUFFER, archivo);
-    caracter = fgetc (archivo);
+    caracter = fgetwc (archivo);
     lineas++;
   }
   return lineas;
