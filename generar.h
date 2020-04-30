@@ -2,6 +2,7 @@
 #define __GENERAR_H__
 
 #include <stdio.h>
+
 typedef struct {
   char **strings;
   int capacidad;

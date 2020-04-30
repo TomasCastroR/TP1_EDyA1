@@ -1,5 +1,4 @@
 #include "sorting.h"
-#include "glist.h"
 
 GList* glist_insertion_sort (GList *lista, Comparar compare) {
   GNodo *inicio = lista->primero;
@@ -62,17 +61,17 @@ GList* glist_merge_sort (GList *lista, Comparar compare) {
   if (lista->primero == lista->ultimo)
     return lista;
   GList *izquierda = glist_crear(), *derecha = glist_crear();
-  GNodo *aux1 = lista->primero, *aux2 = aux1->sig;
-  for (; aux2 != NULL;) {
-    aux1 = aux1->sig;
-    aux2 = aux2->sig;
-    if (aux2 != NULL)
-      aux2 = aux2->sig;
+  GNodo *medio = lista->primero, *aux = medio->sig;
+  while (aux != NULL) {
+    medio = medio->sig;
+    aux = aux->sig;
+    if (aux != NULL)
+      aux = aux->sig;
   }
   izquierda->primero = lista->primero;
-  izquierda->ultimo = aux1->ant;
+  izquierda->ultimo = medio->ant;
   izquierda->ultimo->sig = NULL;
-  derecha->primero = aux1;
+  derecha->primero = medio;
   derecha->primero->ant = NULL;
   derecha->ultimo = lista->ultimo;
   izquierda = glist_merge_sort (izquierda, compare);

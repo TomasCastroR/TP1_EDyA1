@@ -1,10 +1,9 @@
 #ifndef __PERSONA_H__
 #define __PERSONA_H__
+
 #include "glist.h"
 #include "sorting.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
+
 typedef struct {
   char* nombre;
   int edad;

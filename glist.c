@@ -1,4 +1,7 @@
 #include "glist.h"
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
 
 GList* glist_crear() {
   GList *lista = malloc (sizeof(GList));

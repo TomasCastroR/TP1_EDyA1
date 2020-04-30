@@ -1,4 +1,7 @@
 #include "persona.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
 
 Persona* crear_persona (char* nombre, int edad, char* localidad) {
   Persona* nuevaPersona = malloc (sizeof(Persona));

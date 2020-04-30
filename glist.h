@@ -1,10 +1,7 @@
 #ifndef __GLIST_H__
 #define __GLIST_H__
 
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
-#include <assert.h>
 
 typedef struct _GNodo {
   void* dato;
