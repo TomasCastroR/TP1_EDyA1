@@ -5,7 +5,7 @@ void glist_insertion_sort (GList *lista, Comparar compare) {
   GNodo *inicio = lista->primero;
   while (inicio->sig != NULL) {
     GNodo *aux = inicio->sig;
-	  while (aux->ant != NULL && compare (aux->dato, aux->ant->dato) > 0) {
+	  while (aux->ant != NULL && compare (aux->dato, aux->ant->dato)) {
       swap_dato (&aux->dato, &aux->ant->dato);
       aux = aux->ant;
 	  }
@@ -19,7 +19,7 @@ void glist_selection_sort (GList *lista, Comparar compare) {
   while (inicio->sig != NULL) {
     GNodo *aux = inicio->sig;
     while (aux != NULL) {
-      if (compare (aux->dato, menor->dato) > 0)
+      if (compare (aux->dato, menor->dato))
         menor = aux;
       aux = aux->sig;
     }
