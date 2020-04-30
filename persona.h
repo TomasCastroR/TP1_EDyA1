@@ -4,13 +4,14 @@
 #include "sorting.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 typedef struct {
   char* nombre;
   int edad;
   char* localidad;
 }Persona;
 
-typedef void (*FuncionOrdenar) (GList *lista, Comparar compare);
+typedef GList* (*FuncionOrdenar) (GList *lista, Comparar compare);
 
 /* crear_persona: char*, int, char* -> Persona 
   Recibe un nombre, edad y localidad.

@@ -32,14 +32,18 @@ GList* crear_lista_personas (char* nombreArchivo, int cantidadPersonas) {
 
 void ordenar_escribir_lista (char* nombreSalida, GList *lista, FuncionOrdenar ordena, Comparar compare) {
   GList *listaAOrdenar = glist_copiar (lista);
+  double tiempoInicial,tiempoFinal;
+  tiempoInicial = clock();
   ordena (listaAOrdenar, compare);
+  tiempoFinal = clock();
+  double segundos = (tiempoFinal - tiempoInicial)/CLOCKS_PER_SEC;
   Persona *persona;
   FILE* archivoSalida = fopen (nombreSalida, "w");
   for (GNodo *temp = listaAOrdenar->primero; temp != NULL; temp = temp->sig) {
     persona = (Persona*)temp->dato;
     fprintf (archivoSalida, "%s, %d, %s\n", persona->nombre, persona->edad, persona->localidad);
   }
-  //Aca habria que escribir cuanto tardo el algoritmo en ordenar, okey compañero
+  fprintf (archivoSalida, "\nTiempo de ejecucion del algoritmo: %.3lf segundos\n", segundos);
   fclose (archivoSalida);
   glist_destruir (listaAOrdenar, liberar_nodo);
 }
