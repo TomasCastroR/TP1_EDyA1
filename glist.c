@@ -39,5 +39,6 @@ GList* glist_copiar (GList *lista) {
 }
 
 void liberar_nodo (void *nodo) {
-  free (nodo);
+  GNodo *auxNodo = nodo;
+  free (auxNodo);
 }

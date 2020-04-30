@@ -34,7 +34,7 @@ void ordenar_escribir_lista (char* nombreSalida, GList *lista, FuncionOrdenar or
   GList *listaAOrdenar = glist_copiar (lista);
   double tiempoInicial,tiempoFinal;
   tiempoInicial = clock();
-  ordena (listaAOrdenar, compare);
+  listaAOrdenar = ordena (listaAOrdenar, compare);
   tiempoFinal = clock();
   double segundos = (tiempoFinal - tiempoInicial)/CLOCKS_PER_SEC;
   Persona *persona;

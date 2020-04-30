@@ -59,25 +59,26 @@ GList* merge (GList *lista1, GList *lista2, Comparar compare) {
 }
 
 GList* glist_merge_sort (GList *lista, Comparar compare) {
-  if (lista->primero == lista->ultimo) 
+  if (lista->primero == lista->ultimo)
     return lista;
   GList *izquierda = glist_crear(), *derecha = glist_crear();
   GNodo *aux1 = lista->primero, *aux2 = aux1->sig;
   for (; aux2 != NULL;) {
     aux1 = aux1->sig;
     aux2 = aux2->sig;
-    if (aux2 != NULL) 
+    if (aux2 != NULL)
       aux2 = aux2->sig;
   }
   izquierda->primero = lista->primero;
   izquierda->ultimo = aux1->ant;
   izquierda->ultimo->sig = NULL;
   derecha->primero = aux1;
+  derecha->primero->ant = NULL;
   derecha->ultimo = lista->ultimo;
   izquierda = glist_merge_sort (izquierda, compare);
   derecha = glist_merge_sort (derecha, compare);
-
-  return merge (izquierda, derecha, compare);
+  free (lista);
+  return merge (izquierda, derecha, compare);;
 }
 
 void swap_dato (void **dato1, void **dato2) {
