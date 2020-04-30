@@ -39,7 +39,7 @@ void ordenar_escribir_lista (char* nombreSalida, GList *lista, funcionOrdenar or
     persona = (Persona*)temp->dato;
     fprintf(archivoSalida, "%s, %d, %s\n" , persona->nombre, persona->edad, persona->localidad);
   }
-  //Aca habria que escribir cuanto tardo el algoritmo en ordenar
+  //Aca habria que escribir cuanto tardo el algoritmo en ordenar, okey compañero
   fclose (archivoSalida);
   glist_destruir (listaAOrdenar, liberar_nodo);
 }
@@ -62,5 +62,5 @@ int menor_edad (void *dato1, void *dato2) {
 int ordena_nombre (void *dato1, void *dato2) {
   Persona *persona1 = (Persona*)dato1;
   Persona *persona2 = (Persona*)dato2;
-  return strcmp(persona2->nombre,persona1->nombre);
+  return strcmp(persona2->nombre,persona1->nombre);/*¿pq aca usas strcmp y antes no?*/
 }

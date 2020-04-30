@@ -16,7 +16,7 @@ int cantidad_de_lineas (FILE *archivo);
   y libera los espacios de memoria pedidos */
 void liberar_arreglo_strings (ArregloStrings *arreglo);
 
-/* crear_arreglo_strings: char*
+/* crear_arreglo_strings: char-> ArregloStrings*
   Recibe el nombre del archivo. 
     Devuelve una estructura de tipo ArregloStrings, donde cada linea del archivo
   es un string dentro del arreglo. */
