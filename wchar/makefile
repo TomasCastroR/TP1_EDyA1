@@ -1,7 +1,7 @@
 # Reglas de makefile
 
-project: main.o glist.o generar.o sorting.o persona.o
-	gcc -o project main.o glist.o generar.o sorting.o persona.o
+project: main.o glist.o generar.o sorting.o
+	gcc -o project main.o glist.o generar.o sorting.o
 
 main.o: main.c glist.h generar.h
 	gcc -c -Wall -Werror -Wextra -std=c99 -g main.c
@@ -14,6 +14,3 @@ generar.o: generar.c generar.h
 
 sorting.o: sorting.c sorting.h
 	gcc -c -Wall -Werror -Wextra -std=c99 -g sorting.c
-
-persona.o: persona.c persona.h
-	gcc -c -Wall -Werror -Wextra -std=c99 -g persona.c

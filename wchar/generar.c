@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include <time.h>
 #include <assert.h>
-#include <string.h>
+#include <wchar.h>
 
 #define LARGO_BUFFER 100
 #define RANGO_EDAD 100
 
 int cantidad_de_lineas (FILE *archivo) {
   int lineas = 0;
-  char buffer[LARGO_BUFFER];
-  int caracter = fgetc (archivo);
-  while (caracter != EOF) {
-    fgets (buffer, LARGO_BUFFER, archivo);
-    caracter = fgetc (archivo);
+  wchar_t buffer[LARGO_BUFFER];
+  wint_t caracter = fgetwc (archivo);
+  while (caracter != WEOF) {
+    fgetws (buffer, LARGO_BUFFER, archivo);
+    caracter = fgetwc (archivo);
     lineas++;
   }
   return lineas;
@@ -28,7 +28,7 @@ void liberar_arreglo_strings (ArregloStrings *arreglo) {
 }
 
 ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
-  char buffer[LARGO_BUFFER];
+  wchar_t buffer[LARGO_BUFFER];
   int capacidad = 0;
   FILE *archivo;
   archivo = fopen (nombreArchivo, "r");
@@ -36,15 +36,15 @@ ArregloStrings* crear_arreglo_strings (char *nombreArchivo) {
   rewind (archivo);
   ArregloStrings *nuevoArreglo = malloc (sizeof(ArregloStrings));
   assert(nuevoArreglo);
-  nuevoArreglo->strings = malloc (sizeof(char*) * capacidad);
+  nuevoArreglo->strings = malloc (sizeof(wchar_t*) * capacidad);
   assert(nuevoArreglo->strings);
   nuevoArreglo->capacidad = capacidad;
   for (int i = 0; i < capacidad; ++i) {
-    fscanf (archivo, "%[^\n]\n", buffer);
-    nuevoArreglo->strings[i] = malloc (sizeof(char) * (strlen(buffer) + 1));
+    fwscanf (archivo, L"%[^\n]\n", buffer);
+    nuevoArreglo->strings[i] = malloc (sizeof(wchar_t) * (wcslen(buffer) + 1));
     assert(nuevoArreglo->strings[i]);
-    strcpy (nuevoArreglo->strings[i], buffer);
-    nuevoArreglo->strings[i][strlen(buffer)] = '\0';
+    wcscpy (nuevoArreglo->strings[i], buffer);
+    nuevoArreglo->strings[i][wcslen(buffer)] = '\0';
   }
   fclose (archivo);
   return nuevoArreglo;
@@ -62,7 +62,7 @@ void crear_archivo_personas (int cantPersonas,char *archivoNombres,
     random1 = rand() % arregloNombres->capacidad;
     random2 = rand() % arregloPaises->capacidad;
     edad = (rand() % RANGO_EDAD) + 1;
-    fprintf (archivoSalida, "%s, %d, %s\n", arregloNombres->strings[random1],
+    fwprintf (archivoSalida, L"%ls, %d, %ls\n", arregloNombres->strings[random1],
                                          edad, arregloPaises->strings[random2]);
   }
   fclose (archivoSalida);

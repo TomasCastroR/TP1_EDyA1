@@ -2,8 +2,9 @@
 #define __GENERAR_H__
 
 #include <stdio.h>
+#include <wchar.h>
 typedef struct {
-  char **strings;
+  wchar_t **strings;
   int capacidad;
 }ArregloStrings;
 

@@ -5,7 +5,6 @@
 
 typedef int (*Comparar) (void *dato1, void *dato2);
 
-
 void glist_insertion_sort (GList *lista, Comparar compare);
 
 void glist_selection_sort (GList *lista, Comparar compare);
