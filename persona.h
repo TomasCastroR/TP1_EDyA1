@@ -30,7 +30,7 @@ GList* crear_lista_personas (char* nombrearchivo, int cantidadpersonas);
 void ordenar_escribir_lista (char* nombreSalida, GList *lista,
                                        FuncionOrdenar ordena, Comparar compare);
 /* liberar_persona: void*
-  Recibe un dato del tipo void*, libera todos los elementos que contiene y el nodo. */
+  Recibe un dato del tipo void*, libera todos los elementos que contiene y el nodo.*/
 void liberar_persona (void *nodoALiberar);
 
 /* menor_edad: void*, void* ->int

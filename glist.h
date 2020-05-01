@@ -16,6 +16,7 @@ typedef struct {
 }GList;
 
 typedef void (*Destruir) (void *dato);
+
 /*glist_crear:->  Glist*
   Crea y retorna una lista vacia.*/
 GList* glist_crear ();
@@ -30,8 +31,15 @@ void glist_destruir (GList *lista, Destruir funcionDestruir);
   Agrega este dato al final de esta lista como ultimo elemento. */
 void glist_agregar_final (GList **lista, void *dato);
 
-void glist_agregar_nodo (GList **lista, GNodo *nodo);
+/* glist_agregar_nodo: GList**, GNodo*
+  Recibe una lista del tipo GList** y un nodo del tipo GNodo*.
+    Agrega el nodo al final de la lista. */
+void glist_agregar_nodo (GList **lista, GNodo *nodo); // tendria que ser glist_agregar_nodo_final 
 
+/* glist_split: GList*, GList**, GList**
+  Recibe una lista del tipo GList* y dos listas del tipo GList**.
+  Le asigna desde el primer elemento hasta la mitad de lista(GList) a lista(GList**) y
+  desde la mitad hasta el ultimo de lista(GList) a la otra lista(Glist**)*/
 void glist_split (GList *lista, GList **izquierda, GList **derecha);
 
 /*glist_copiar: GList* -> GList*

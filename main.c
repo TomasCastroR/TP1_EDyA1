@@ -7,7 +7,6 @@
 #include <locale.h>
 #include <ctype.h>
 
-
 int main (int argc, char *argumentos[]) {
   assert (argc == 5);
   setlocale(LC_ALL, "");
@@ -24,7 +23,7 @@ int main (int argc, char *argumentos[]) {
 
   ordenar_escribir_lista ("personasMergeEdad.txt", lista, glist_merge_sort, menor_edad);
   ordenar_escribir_lista ("personasMergeNombre.txt", lista, glist_merge_sort, ordena_nombre);
-
+  
   glist_destruir (lista, liberar_persona);
   return 0;
 }
