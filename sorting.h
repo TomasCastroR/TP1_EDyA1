@@ -23,8 +23,8 @@ GList* glist_merge_sort (GList *lista, Comparar compare);
 
 /*merge: GList*, GList*, Comparar -> GList*
   Recibe dos listas del tipo GList* y una funcion de tipo Comparar.
-    Retorna una lista ordenada utilizando el metodo de merge sort */
-GList* merge (GList *lista1, GList *lista2, Comparar compare);
+    Retorna una lista ordenada mergeando las dos listas */
+GList* glist_merge (GList *lista1, GList *lista2, Comparar compare);
 
 /*swap_dato: void**, void**
   Recibe 2 datos del tipo void** e intercambia sus valores.*/

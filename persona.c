@@ -35,13 +35,14 @@ GList* crear_lista_personas (char* nombreArchivo, int cantidadPersonas) {
   return lista;
 }
 
-void ordenar_escribir_lista (char* nombreSalida, GList *lista, FuncionOrdenar ordena, Comparar compare) {
+void ordenar_escribir_lista (char* nombreSalida, GList *lista,
+                                     FuncionOrdenar ordena, Comparar compare) {
   GList *listaAOrdenar = glist_copiar (lista);
-  double tiempoInicial,tiempoFinal;
+  clock_t tiempoInicial,tiempoFinal;
   tiempoInicial = clock();
   listaAOrdenar = ordena (listaAOrdenar, compare);
   tiempoFinal = clock();
-  double segundos = (tiempoFinal - tiempoInicial)/CLOCKS_PER_SEC;
+  double segundos = (double)(tiempoFinal - tiempoInicial)/CLOCKS_PER_SEC;
   Persona *persona;
   FILE* archivoSalida = fopen (nombreSalida, "w");
   for (GNodo *temp = listaAOrdenar->primero; temp != NULL; temp = temp->sig) {

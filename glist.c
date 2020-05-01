@@ -1,5 +1,4 @@
 #include "glist.h"
-#include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 
@@ -34,7 +33,9 @@ void glist_agregar_final (GList **lista, void *dato) {
   (*lista)->ultimo = nuevoNodo;
 }
 
-void glist_agregar_nodo (GList **lista, GNodo *nodo) {
+void glist_agregar_nodo_final (GList **lista, GNodo *nodo) {
+  nodo->ant = (*lista)->ultimo;
+  nodo->sig = NULL;
   if ((*lista)->primero == NULL)
     (*lista)->primero = nodo;
   if ((*lista)->ultimo != NULL)
@@ -56,6 +57,7 @@ void glist_split (GList *lista, GList **izquierda, GList **derecha) {
   (*derecha)->primero = medio;
   (*derecha)->primero->ant = NULL;
   (*derecha)->ultimo = lista->ultimo;
+  free (lista);
 }
 
 GList* glist_copiar (GList *lista) {

@@ -30,26 +30,30 @@ GList* glist_selection_sort (GList *lista, Comparar compare) {
   return lista;
 }
 
-GList* merge (GList *lista1, GList *lista2, Comparar compare) {
+GList* glist_merge (GList *lista1, GList *lista2, Comparar compare) {
   GList *listaMerge = glist_crear();
-  GNodo *temp1 = lista1->primero, *temp2 = lista2->primero;
+  GNodo *temp1 = lista1->primero, *temp2 = lista2->primero, *aux;
   while (temp1 != NULL && temp2 != NULL) {
     if (compare (temp1->dato, temp2->dato) > 0) {
-      glist_agregar_nodo (&listaMerge, temp1);
-      temp1 = temp1->sig;
+      aux = temp1->sig;
+      glist_agregar_nodo_final (&listaMerge, temp1);
+      temp1 = aux;
     }
     else {
-      glist_agregar_nodo (&listaMerge, temp2);
-      temp2 = temp2->sig;
+      aux = temp2->sig;
+      glist_agregar_nodo_final (&listaMerge, temp2);
+      temp2 = aux;
     }
   }
   while (temp1 != NULL) {
-    glist_agregar_nodo (&listaMerge, temp1);
-    temp1 = temp1->sig;
+    aux = temp1->sig;
+    glist_agregar_nodo_final (&listaMerge, temp1);
+    temp1 = aux;
   }
   while (temp2 != NULL) {
-    glist_agregar_nodo (&listaMerge, temp2);
-    temp2 = temp2->sig;
+    aux = temp2->sig;
+    glist_agregar_nodo_final (&listaMerge, temp2);
+    temp2 = aux;
   }
   free (lista1);
   free (lista2);
@@ -63,8 +67,7 @@ GList* glist_merge_sort (GList *lista, Comparar compare) {
   glist_split (lista, &listaIzquierda, &listaDerecha);
   listaIzquierda = glist_merge_sort (listaIzquierda, compare);
   listaDerecha = glist_merge_sort (listaDerecha, compare);
-  free (lista);
-  return merge (listaIzquierda, listaDerecha, compare);
+  return glist_merge (listaIzquierda, listaDerecha, compare);
 }
 
 void swap_dato (void **dato1, void **dato2) {

@@ -2,7 +2,6 @@
 #include "glist.h"
 #include "sorting.h"
 #include "persona.h"
-#include <stdlib.h>
 #include <assert.h>
 #include <locale.h>
 #include <ctype.h>
