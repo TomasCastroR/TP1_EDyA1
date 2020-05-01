@@ -1,6 +1,8 @@
 #include "persona.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <assert.h>
 #include <time.h>
 
 Persona* crear_persona (char* nombre, int edad, char* localidad) {

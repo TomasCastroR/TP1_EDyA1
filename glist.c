@@ -34,6 +34,30 @@ void glist_agregar_final (GList **lista, void *dato) {
   (*lista)->ultimo = nuevoNodo;
 }
 
+void glist_agregar_nodo (GList **lista, GNodo *nodo) {
+  if ((*lista)->primero == NULL)
+    (*lista)->primero = nodo;
+  if ((*lista)->ultimo != NULL)
+    (*lista)->ultimo->sig = nodo;
+  (*lista)->ultimo = nodo;
+}
+
+void glist_split (GList *lista, GList **izquierda, GList **derecha) {
+  GNodo *medio = lista->primero, *aux = medio->sig;
+  while (aux != NULL) {
+    medio = medio->sig;
+    aux = aux->sig;
+    if (aux != NULL)
+      aux = aux->sig;
+  }
+  (*izquierda)->primero = lista->primero;
+  (*izquierda)->ultimo = medio->ant;
+  (*izquierda)->ultimo->sig = NULL;
+  (*derecha)->primero = medio;
+  (*derecha)->primero->ant = NULL;
+  (*derecha)->ultimo = lista->ultimo;
+}
+
 GList* glist_copiar (GList *lista) {
   GList *listaCopiada = glist_crear();
   for (GNodo *temp = lista->primero; temp != NULL; temp = temp->sig)
