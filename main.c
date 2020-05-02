@@ -2,9 +2,7 @@
 #include "glist.h"
 #include "sorting.h"
 #include "persona.h"
-#include <assert.h>
 #include <locale.h>
-#include <ctype.h>
 
 int main (int argc, char *argumentos[]) {
   assert (argc == 5);
