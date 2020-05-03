@@ -1,8 +1,5 @@
 #include "persona.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
-#include <assert.h>
 #include <time.h>
 
 Persona* crear_persona (char* nombre, int edad, char* localidad) {
@@ -51,7 +48,7 @@ void ordenar_escribir_lista (char* nombreSalida, GList *lista,
   }
   fprintf (archivoSalida, "\nTiempo de ejecucion del algoritmo: %.3lf segundos\n", segundos);
   fclose (archivoSalida);
-  glist_destruir (listaAOrdenar, liberar_nodo);
+  glist_destruir (listaAOrdenar, &liberar_nodo);
 }
 
 void liberar_persona (void *nodoALiberar) {

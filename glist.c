@@ -20,19 +20,6 @@ void glist_destruir (GList *lista, Destruir funcionDestruir) {
   free(lista);
 }
 
-void glist_agregar_final (GList **lista, void *dato) {
-  GNodo *nuevoNodo = malloc (sizeof(GNodo));
-  assert(nuevoNodo);
-  nuevoNodo->dato = dato;
-  nuevoNodo->ant = (*lista)->ultimo;
-  nuevoNodo->sig = NULL;
-  if ((*lista)->ultimo != NULL)
-    (*lista)->ultimo->sig = nuevoNodo;
-  if ((*lista)->primero == NULL)
-    (*lista)->primero = nuevoNodo;
-  (*lista)->ultimo = nuevoNodo;
-}
-
 void glist_agregar_nodo_final (GList **lista, GNodo *nodo) {
   nodo->ant = (*lista)->ultimo;
   nodo->sig = NULL;
@@ -41,6 +28,13 @@ void glist_agregar_nodo_final (GList **lista, GNodo *nodo) {
   if ((*lista)->ultimo != NULL)
     (*lista)->ultimo->sig = nodo;
   (*lista)->ultimo = nodo;
+}
+
+void glist_agregar_final (GList **lista, void *dato) {
+  GNodo *nuevoNodo = malloc (sizeof(GNodo));
+  assert(nuevoNodo);
+  nuevoNodo->dato = dato;
+  glist_agregar_nodo_final(lista, nuevoNodo);
 }
 
 void glist_split (GList *lista, GList **izquierda, GList **derecha) {
